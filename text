@@ -1,0 +1,38 @@
+dashboard :
+category
+
+shipment 
+order
+product
+order product
+
+customer
+static_info
+shipping_fees
+
+admin or users
+
+
+note:
+1- add category_id to product
+2- add pressure count to table product
+
+
+
+3 pages: shipment - category - product with filter
+
+Done:
+1- customer
+2- category 
+3- static info
+4- shipping fees
+
+5- shipment without make profit method   
+6- order 
+
+status {
+pending : on coming,
+active: if it is deliver to me,
+deliver: if it is deliver to customer,
+finished: deliver everything,
+}

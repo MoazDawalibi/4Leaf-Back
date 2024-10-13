@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
 
 
         // php artisan db:seed
-        User::create([
-            'email' => 'admin@admin.com',
+        User::create( [
+            'name' => 'admin',
             "password"=>Hash::make("12345678"),
-            "name"=>"Super Admin"
+            // "name"=>"Super Admin"
         ]);
     }
 }

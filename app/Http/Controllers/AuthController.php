@@ -2,29 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\AuthRequest;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Http\Request;
+use App\Services\AuthService;
 
 class AuthController extends Controller
 {
+    public function __construct(protected AuthService $service){
 
+    }
 
-    public function login(AuthRequest $request){
+    public function login(LoginRequest $request){
+        $user = $this->service->login($request->validated());
+        if (!$user){
+            return $this->sendError(__('login failed'));  
+        }
+        return $this->sendResponse($user);   
+    }
 
-        
-        $user = User::where("email", $request->email)->first();
-        $is_true_password = Hash::check($request->password ,$user->password );
-        if(!$is_true_password){ return $this->sendError("uncorrect_password");}
+    public function register(Request $request){
+        $registerData = $this->service->register($request->all());
+        return $this->sendResponse($registerData);    
+    }
 
-        $token = $user->createToken("APP")->plainTextToken;
-
-
-        $data =[];
-        $data['user']=  $user;
-        $data['token']=$token;
-
-        return $this->sendResponse($data,200,__("message.login"));
+    public function logout(Request $request)
+    {
+        $data = $this->service->logout($request);
+        if(!$data){
+            return $this->sendError(__('failed'));  
+        }
+        return $this->sendResponse('logut succdata: essfully');
     }
 }

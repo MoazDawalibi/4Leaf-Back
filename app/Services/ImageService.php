@@ -23,17 +23,16 @@ class ImageService
 
     public static function update_image(UploadedFile $new_image, $old_image_name, $upload_location = '')
     {
-        $upload_folder = Config::get('appSetting.upload_folder');
-
-        $new_image_path_without_public = $upload_folder . $upload_location . '/';
-        $new_image_path = public_path() . $upload_folder . $upload_location . '/';
+        $new_image_path_without_public = '/images/' . $upload_location . '/';
+        $new_image_path = public_path() . '/images/' . $upload_location . '/';
         $new_image_name = $upload_location . '_' . Str::uuid() . '.' . $new_image->getClientOriginalExtension();
         $new_image->move($new_image_path, $new_image_name);
         try {
             unlink(public_path() . $old_image_name);
 
             return $new_image_path_without_public . $new_image_name;
-        } catch (Exception $e) {
+        } catch (Exception $e)
+    {
             return $new_image_path_without_public . $new_image_name;
         }
     }

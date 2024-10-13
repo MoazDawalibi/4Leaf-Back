@@ -2,37 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Category\StoreCategoryRequest;
-use App\Http\Requests\Category\UpdateCategoryRequest;
-use App\Http\Resources\Dashboard\Category\GetAllCategoryCollection;
-use App\Http\Resources\Dashboard\Category\GetOneCategoryResource;
-use App\Services\CategoryService;
+use App\Http\Requests\Customer\StoreCustomerRequest;
+use App\Http\Requests\Customer\UpdateCustomerRequest;
+use App\Http\Resources\Dashboard\Customer\GetAllCustomerCollection;
+use App\Http\Resources\Dashboard\Customer\GetOneCustomerResource;
+use App\Services\CustomerService;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class CustomerController extends Controller
 {
-    public function __construct(protected CategoryService $service) {
+    public function __construct(protected CustomerService $service) {
 
     }
     public function index(Request $request){
         $data = $this->service
         ->indexWithPagination($request->per_page??8, $request->page ,$request->name);
-        $response = new GetAllCategoryCollection($data);
+        $response = new GetAllCustomerCollection($data);
 
         return $this->sendResponse($response);
     }
     public function show($id){   
         $data = $this->service->show($id);
-        $response = new GetOneCategoryResource($data);
+        $response = new GetOneCustomerResource($data);
         return $this->sendResponse($response);
     }
-    public function store(StoreCategoryRequest $request){
+    public function store(StoreCustomerRequest $request){
+       
         $validatedData = $request->validated();
         $data = $this->service->store($validatedData);
         return $this->sendResponse($data);
     }
 
-    public function update(UpdateCategoryRequest $request,$id)
+    public function update(UpdateCustomerRequest $request,$id)
     {
         $validatedData = $request->validated();
         $data = $this->service->update($id,$validatedData);

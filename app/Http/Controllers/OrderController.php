@@ -2,37 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Category\StoreCategoryRequest;
-use App\Http\Requests\Category\UpdateCategoryRequest;
-use App\Http\Resources\Dashboard\Category\GetAllCategoryCollection;
-use App\Http\Resources\Dashboard\Category\GetOneCategoryResource;
-use App\Services\CategoryService;
+use App\Http\Requests\Order\StoreOrderRequest;
+use App\Http\Requests\Order\UpdateOrderRequest;
+use App\Http\Resources\Dashboard\Order\GetAllOrderCollection;
+use App\Http\Resources\Dashboard\Order\GetOneOrderResource;
+use App\Services\OrderService;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class OrderController extends Controller
 {
-    public function __construct(protected CategoryService $service) {
+    public function __construct(protected OrderService $service) {
 
     }
     public function index(Request $request){
         $data = $this->service
-        ->indexWithPagination($request->per_page??8, $request->page ,$request->name);
-        $response = new GetAllCategoryCollection($data);
-
+        ->indexWithFilter(
+         $request->per_page??8,
+          $request->page,
+          $request->user_id,
+          $request->status);
+        $response = new GetAllOrderCollection($data);
+ 
         return $this->sendResponse($response);
-    }
+     }
     public function show($id){   
         $data = $this->service->show($id);
-        $response = new GetOneCategoryResource($data);
+        $response = new GetOneOrderResource($data);
         return $this->sendResponse($response);
     }
-    public function store(StoreCategoryRequest $request){
+    public function store(StoreOrderRequest $request){
+       
         $validatedData = $request->validated();
         $data = $this->service->store($validatedData);
         return $this->sendResponse($data);
     }
 
-    public function update(UpdateCategoryRequest $request,$id)
+    public function update(UpdateOrderRequest $request,$id)
     {
         $validatedData = $request->validated();
         $data = $this->service->update($id,$validatedData);
