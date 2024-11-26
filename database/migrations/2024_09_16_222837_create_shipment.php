@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('order_count')->default(0);
             $table->integer('product_count')->default(0);
             $table->integer('currency_price')->default(0);
+            $table->integer('customer_currency_price')->default(0);
             $table->integer('shipping_fees_total_profit')->default(0);
             $table->integer('currency_profit')->default(0);
             $table->integer('total_profit')->default(0);

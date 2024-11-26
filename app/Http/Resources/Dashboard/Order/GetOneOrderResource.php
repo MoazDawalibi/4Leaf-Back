@@ -33,6 +33,7 @@ class GetOneOrderResource extends JsonResource
                 'order_count' => $this->shipments->order_count,
                 'product_count' => $this->shipments->product_count,
                 'currency_price' => $this->shipments->currency_price,
+                'customer_currency_price' => $this->shipments->customer_currency_price,
                 'shipping_fees_total_profit' => $this->shipments->shipping_fees_total_profit,
                 'currency_profit' => $this->shipments->currency_profit,
                 'total_profit' => $this->shipments->total_profit,

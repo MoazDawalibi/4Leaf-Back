@@ -12,6 +12,7 @@ class UpdateCustomerRequest extends BaseFormRequest
             'id' => 'nullable|numeric',
             "name"=> "nullable|string",
             "account_name"=> "nullable|string",
+            "customer_type"=> "nullable|string",
             "phone_number"=> "nullable|numeric",
             "note"=> "nullable|string",
         ];

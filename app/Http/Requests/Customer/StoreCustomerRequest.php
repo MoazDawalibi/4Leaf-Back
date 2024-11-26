@@ -11,6 +11,7 @@ class StoreCustomerRequest extends BaseFormRequest
         return [
             "name"=> "required|string",
             "account_name"=> "nullable|string",
+            "customer_type"=> "nullable|string",
             "phone_number"=> "nullable|numeric",
             "note"=> "nullable|string",
         ];

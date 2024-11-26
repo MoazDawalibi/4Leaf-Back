@@ -15,6 +15,7 @@ class StoreShipmentRequest extends BaseFormRequest
             "end_date"=> "required|date",
             "status" => ['nullable', 'in:active,finished,pending,delivered'],
             "currency_price"=> "required|numeric",
+            "customer_currency_price"=> "required|numeric",
             "order_count"=> "nullable|numeric",
             "product_count"=> "nullable|numeric",
             "shipping_fees_total_profit"=> "nullable|numeric",

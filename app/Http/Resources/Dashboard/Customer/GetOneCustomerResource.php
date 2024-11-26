@@ -18,6 +18,7 @@ class GetOneCustomerResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'account_name' => $this->account_name,
+            'customer_type' => $this->customer_type,
             'phone_number' => $this->phone_number,
             'note' => $this->note,
         ];

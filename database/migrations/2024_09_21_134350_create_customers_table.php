@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id(); 
             $table->string('name', 100);
             $table->string('account_name', 100)->nullable();
+            $table->enum('customer_type', ['normal', 'special'])->default('normal');
             $table->integer('phone_number')->nullable();
             $table->longText('note')->nullable();
             $table->timestamps();

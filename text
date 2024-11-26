@@ -26,10 +26,11 @@ Done:
 2- category => done
 3- static info => done
 4- shipping fees => done
+
 5- shipment 
 6- order 
-
 7- product and profit method
+
 9- auth => done 
 
 
@@ -42,3 +43,9 @@ finished: deliver everything,
 }
 
 // add isOrdered att in product table
+
+
+reletion function 
+$data->orders()->attach([1 => [
+    ''
+]]);

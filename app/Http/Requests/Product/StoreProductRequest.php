@@ -10,14 +10,16 @@ class StoreProductRequest extends BaseFormRequest
     public function rules(): array
     {
         return [
-            "status" => ['nullable', 'in:active,finished,pending,delivered'],
-            "customer_id"=> "required|numeric",
-            "shipment_id"=> "required|numeric",
-            "product_count"=> "nullable|numeric",
-            "shipping_fees_total_profit"=> "nullable|numeric",
-            "currency_profit"=> "nullable|numeric",
-            "total_profit"=> "nullable|numeric",
-            "total_price"=> "nullable|numeric",
+            "order_id"=> "required|numeric",
+            "name"=> "required|string",
+            "shipping_fees"=> "required|numeric",
+            "discount"=> "nullable|numeric",
+            "product_quantity"=> "required|numeric",
+            "price"=> "required|numeric",
+            // "price_with_currency" => "required|numeric", 
+            // "price_with_quantity" =>"required|numeric",
+            "product_options"=> "nullable",
+
         ];
     }
 }

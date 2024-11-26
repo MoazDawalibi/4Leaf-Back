@@ -17,6 +17,7 @@ class UpdateShipmentRequest extends BaseFormRequest
             "order_count" => "nullable|numeric",
             "product_count" => "nullable|numeric",
             "currency_price" => "nullable|numeric",
+            "customer_currency_price"=> "required|numeric",
             "shipping_fees_total_profit" => "nullable|numeric",
             "currency_profit" => "nullable|numeric",
             "total_profit" => "nullable|numeric",

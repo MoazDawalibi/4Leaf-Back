@@ -21,11 +21,13 @@ class ProductController extends Controller
          $request->per_page??8,
           $request->page,
           $request->name,
-          $request->shipment_id,
-          $request->customer_id,
-          $request->status);
+          $request->order_id,
+          $request->price,
+          $request->discount,
+          $request->product_quantity,
+          $request->product_options
+        );
         $response = new GetAllProductCollection($data);
-
         return $this->sendResponse($response);
     }
     public function show($id){   
@@ -42,7 +44,7 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request,$id)
     {
         $validatedData = $request->validated();
-        $data = $this->service->update($id,$validatedData);
+        $data = $this->service->updateProduct($id,$validatedData);
         return $this->sendResponse($data);
     }
 

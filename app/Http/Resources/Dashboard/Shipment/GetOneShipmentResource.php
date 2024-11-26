@@ -21,6 +21,7 @@ class GetOneShipmentResource extends JsonResource
             'end_date' => $this->end_date,
             'status' => $this->status,
             'currency_price' => $this->currency_price,
+            'customer_currency_price' => $this->customer_currency_price,
             'order_count' => $this->order_count,
             'product_count' => $this->product_count,
             'shipping_fees_total_profit' => $this->shipping_fees_total_profit,

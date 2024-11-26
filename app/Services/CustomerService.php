@@ -16,10 +16,14 @@ class CustomerService extends BaseService {
         $per_page = 8,
         $page = 1,
         $search = null,
-        $phone_number = null,) 
+        $phone_number = null,
+        $customer_type = null) 
     {
         $data = Customer::when($phone_number, function ($q) use ($phone_number) {
             return $q->wherePhoneNumber( $phone_number);
+        })
+        ->when($customer_type, function ($q) use ($customer_type) {
+            return $q->whereCustomerType($customer_type); 
         });
 
         if ($search) {

@@ -10,14 +10,15 @@ class UpdateProductRequest extends BaseFormRequest
     {
         return [
             'id' => 'nullable|numeric',
-            "status" => ['nullable', 'in:active,finished,pending,delivered'],
-            "customer_id"=> "nullable|numeric",
-            "shipment_id"=> "nullable|numeric",
-            "product_count"=> "nullable|numeric",
-            "shipping_fees_total_profit"=> "nullable|numeric",
-            "currency_profit"=> "nullable|numeric",
-            "total_profit"=> "nullable|numeric",
-            "total_price"=> "nullable|numeric",
+            "order_id"=> "required|numeric",
+            "name"=> "nullable|string",
+            "shipping_fees"=> "nullable|numeric",
+            "discount"=> "nullable|numeric",
+            "product_quantity"=> "nullable|numeric",
+            // "price_with_currency" => "nullable|numeric", 
+            // "price_with_quantity" =>"nullable|numeric",
+            "price"=> "nullable|numeric",
+            "product_options"=> "nullable",
         ];
     }
 }
