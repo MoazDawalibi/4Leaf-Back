@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
 
         // php artisan db:seed
         User::create( [
-            'name' => 'admin',
+            "role_type"=>"admin",
+            'email' => 'admin@admin.com',
             "password"=>Hash::make("12345678"),
-            // "name"=>"Super Admin"
         ]);
     }
 }

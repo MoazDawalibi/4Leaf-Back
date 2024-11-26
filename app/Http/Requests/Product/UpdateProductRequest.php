@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Order;
+namespace App\Http\Requests\Product;
 
 use App\Http\Requests\Base\BaseFormRequest;
 
-class UpdateOrderRequest extends BaseFormRequest
+class UpdateProductRequest extends BaseFormRequest
 {
     public function rules(): array
     {

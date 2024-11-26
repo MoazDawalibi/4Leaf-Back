@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId( 'order_id')->constrained('orders')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->string('name',100);
             $table->float('shipping_fees');
-            $table->float('discount');
+            $table->float('discount'); // discount on shipping fees
+            $table->integer('product_quantity')->nullable();
+            $table->float('price')->nullable();
+            $table->longText('product_options')->nullable();
             $table->timestamps();
         });
     }

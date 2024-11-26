@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Dashboard\Order;
+namespace App\Http\Resources\Dashboard\Product;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GetOneOrderResource extends JsonResource
+class GetOneProductResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

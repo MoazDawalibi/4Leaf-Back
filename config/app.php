@@ -15,6 +15,7 @@ return [
     | any other location as required by the application or its packages.
     |
     */
+    'base_url' => env('APP_URL', 'http://127.0.0.1:8000'), // Dynamically reads from .env
 
     'name' => env('APP_NAME', 'Laravel'),
 

@@ -22,17 +22,23 @@ note:
 3 pages: shipment - category - product with filter
 
 Done:
-1- customer
-2- category 
-3- static info
-4- shipping fees
-
-5- shipment without make profit method   
+1- customer => done
+2- category => done
+3- static info => done
+4- shipping fees => done
+5- shipment 
 6- order 
 
+7- product and profit method
+9- auth => done 
+
+
+
 status {
-pending : on coming,
+pending : on comming,
 active: if it is deliver to me,
 deliver: if it is deliver to customer,
 finished: deliver everything,
 }
+
+// add isOrdered att in product table

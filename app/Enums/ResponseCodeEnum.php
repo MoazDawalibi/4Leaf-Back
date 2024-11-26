@@ -1,5 +1,5 @@
 <?php
-namespace App\enum;
+namespace App\Enums;
 
 enum ResponseCodeEnum : int {
     case RESOURCE_NOT_FOUND = 404;

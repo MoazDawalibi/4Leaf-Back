@@ -5,7 +5,7 @@ namespace App\Http\Requests\Auth;
 use App\Http\Requests\Base\BaseFormRequest;
 
 
-class RegisterRequest extends BaseFormRequest
+class UpdateUser extends BaseFormRequest
 {
   
     public function rules()

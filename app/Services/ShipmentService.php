@@ -18,7 +18,8 @@ class ShipmentService extends BaseService
         $start_date = null, 
         $end_date = null,
         $currency_price = null,
-        $status = null)
+        $status = null,
+        $order_id = null)
     {
         $data = Shipment::when($start_date, function ($q) use ($start_date) {
             return $q->whereStartDate( $start_date);

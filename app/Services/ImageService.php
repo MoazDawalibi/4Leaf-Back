@@ -4,43 +4,50 @@ namespace App\Services;
 
 use Exception;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ImageService
 {
     public static function upload_image(UploadedFile $new_image, $upload_location = '')
     {
-        $upload_folder = Config::get('appSetting.upload_folder');
+        // Get the base URL from config
+        $base_url = config('app.base_url'); // or config('image.base_url') if using a custom file
 
-        $image_path_without_public = $upload_folder . $upload_location . '/';
-        $image_path = public_path() . $upload_folder . $upload_location . '/';
-        $image_name = $upload_location . '_' . Str::uuid() . '.' . $new_image->getClientOriginalExtension();
-        $new_image->move($image_path, $image_name);
+        // Define the folder structure
+        $relative_path = 'storage/' . $upload_location . '/';
+        $image_name = Str::uuid() . '.' . $new_image->getClientOriginalExtension();
 
-        return $image_path_without_public . $image_name;
+        // Store the image in the public disk
+        $new_image->storeAs($upload_location, $image_name, 'public');
+
+        // Generate the full URL
+        return $base_url . '/' . $relative_path . $image_name;
     }
 
-    public static function update_image(UploadedFile $new_image, $old_image_name, $upload_location = '')
+    public static function update_image(UploadedFile $new_image, $old_image_url, $upload_location = '')
     {
-        $new_image_path_without_public = '/images/' . $upload_location . '/';
-        $new_image_path = public_path() . '/images/' . $upload_location . '/';
-        $new_image_name = $upload_location . '_' . Str::uuid() . '.' . $new_image->getClientOriginalExtension();
-        $new_image->move($new_image_path, $new_image_name);
-        try {
-            unlink(public_path() . $old_image_name);
+        // Get the base URL from config
+        $base_url = config('app.base_url'); // or config('image.base_url')
 
-            return $new_image_path_without_public . $new_image_name;
-        } catch (Exception $e)
-    {
-            return $new_image_path_without_public . $new_image_name;
+        // Delete the old image if it exists
+        if (!empty($old_image_url)) {
+            $relative_old_path = str_replace($base_url . '/storage/', '', $old_image_url);
+            Storage::disk('public')->delete($relative_old_path);
         }
+
+        // Upload the new image
+        return self::upload_image($new_image, $upload_location);
     }
 
-    public static function delete_image($image)
+    public static function delete_image($image_url)
     {
         try {
-            unlink(public_path() . $image);
+            // Get the base URL from config
+            $base_url = config('app.base_url'); // or config('image.base_url')
+
+            $relative_path = str_replace($base_url . '/storage/', '', $image_url);
+            Storage::disk('public')->delete($relative_path);
 
             return true;
         } catch (Exception $e) {

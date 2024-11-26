@@ -3,34 +3,70 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Auth\UpdateUser;
+use App\Http\Resources\Dashboard\Auth\GetAllUserCollection;
 use App\Services\AuthService;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function __construct(protected AuthService $service){
-
+    public function __construct(protected AuthService $service)
+    {
+        
     }
 
-    public function login(LoginRequest $request){
-        $user = $this->service->login($request->validated());
-        if (!$user){
-            return $this->sendError(__('login failed'));  
+    public function index(Request $request){
+        $data = $this->service
+        ->indexWithFilter($request->per_page??8, $request->page ,$request->email,$request->role_type);
+        $response = new GetAllUserCollection($data);
+        return $this->sendResponse($response);
+    }
+    public function login(LoginRequest $request)
+    {
+        $response = $this->service->login($request->validated());
+    
+        if (isset($response['error'])) {
+            return $this->sendError(__($response['error']));
         }
-        return $this->sendResponse($user);   
+    
+        return $this->sendResponse($response);
     }
-
-    public function register(Request $request){
-        $registerData = $this->service->register($request->all());
-        return $this->sendResponse($registerData);    
+    
+    public function register(RegisterRequest $request)
+    {
+        $response = $this->service->register($request->validated());
+    
+        if (isset($response['error'])) {
+            return $this->sendError(__($response['error']));
+        }
+    
+        return $this->sendResponse($response);
     }
+    
 
     public function logout(Request $request)
     {
-        $data = $this->service->logout($request);
-        if(!$data){
-            return $this->sendError(__('failed'));  
+        $response = $this->service->logout($request);
+    
+        if (isset($response['error'])) {
+            return $this->sendError(__($response['error']));
         }
-        return $this->sendResponse('logut succdata: essfully');
+    
+        return $this->sendResponse($response);
+    }
+
+    public function update(UpdateUser $request, $userId)
+    {
+        // Validate input data
+        $validated = $request->validated();
+
+        $response = $this->service->updateUser($validated, $userId);
+
+        if (isset($response['error'])) {
+            return $this->sendError(__($response['error']));
+        }
+
+        return $this->sendResponse($response);
     }
 }

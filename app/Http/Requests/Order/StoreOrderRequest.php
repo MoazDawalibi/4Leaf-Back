@@ -11,7 +11,7 @@ class StoreOrderRequest extends BaseFormRequest
     {
         return [
             "status" => ['nullable', 'in:active,finished,pending,delivered'],
-            "user_id"=> "required|numeric",
+            "customer_id"=> "required|numeric",
             "shipment_id"=> "required|numeric",
             "product_count"=> "nullable|numeric",
             "shipping_fees_total_profit"=> "nullable|numeric",

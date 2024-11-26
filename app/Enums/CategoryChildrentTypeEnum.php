@@ -1,5 +1,5 @@
 <?php
-namespace App\enum;
+namespace App\Enums;
 
 enum CategoryChildrentTypeEnum : string {
     case PRODUCT = "P";

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->enum('status', ['active', 'finished', 'pending', 'delivered'])->default('pending');
-            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade'); // Ensure the foreign key references 'customers'
+            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->foreignId('shipment_id')->constrained('shipments')->onDelete('cascade');
             $table->integer('product_count')->default(0);
             $table->integer('shipping_fees_total_profit')->default(0);
@@ -23,7 +23,6 @@ return new class extends Migration
             $table->integer('total_price')->default(0);
             $table->timestamps();
         });
-        
     }
 
     /**

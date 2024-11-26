@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Requests\Order;
+namespace App\Http\Requests\Product;
 
 use App\Http\Requests\Base\BaseFormRequest;
 
-class UpdateOrderRequest extends BaseFormRequest
+class StoreProductRequest extends BaseFormRequest
 {
+
     public function rules(): array
     {
         return [
-            'id' => 'nullable|numeric',
             "status" => ['nullable', 'in:active,finished,pending,delivered'],
-            "customer_id"=> "nullable|numeric",
-            "shipment_id"=> "nullable|numeric",
+            "customer_id"=> "required|numeric",
+            "shipment_id"=> "required|numeric",
             "product_count"=> "nullable|numeric",
             "shipping_fees_total_profit"=> "nullable|numeric",
             "currency_profit"=> "nullable|numeric",

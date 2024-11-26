@@ -16,9 +16,8 @@ class CustomerController extends Controller
     }
     public function index(Request $request){
         $data = $this->service
-        ->indexWithPagination($request->per_page??8, $request->page ,$request->name);
+        ->indexWithFilter($request->per_page??8, $request->page ,$request->account_name,$request->phone_number);
         $response = new GetAllCustomerCollection($data);
-
         return $this->sendResponse($response);
     }
     public function show($id){   

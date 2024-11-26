@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Order\StoreOrderRequest;
-use App\Http\Requests\Order\UpdateOrderRequest;
-use App\Http\Resources\Dashboard\Order\GetAllOrderCollection;
-use App\Http\Resources\Dashboard\Order\GetOneOrderResource;
-use App\Services\OrderService;
+use App\Http\Requests\Product\StoreProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
+use App\Http\Resources\Dashboard\Product\GetAllProductCollection;
+use App\Http\Resources\Dashboard\Product\GetOneProductResource;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class ProductController extends Controller
 {
-    public function __construct(protected OrderService $service) {
+    public function __construct(protected ProductService $service) {
 
     }
     public function index(Request $request){
@@ -24,22 +24,22 @@ class OrderController extends Controller
           $request->shipment_id,
           $request->customer_id,
           $request->status);
-        $response = new GetAllOrderCollection($data);
+        $response = new GetAllProductCollection($data);
 
         return $this->sendResponse($response);
     }
     public function show($id){   
-        $data = $this->service->showOrder($id);
-        $response = new GetOneOrderResource($data);
+        $data = $this->service->showProduct($id);
+        $response = new GetOneProductResource($data);
         return $this->sendResponse($response);
     }
-    public function store(StoreOrderRequest $request){       
+    public function store(StoreProductRequest $request){       
         $validatedData = $request->validated();
         $data = $this->service->create($validatedData);   
         return $this->sendResponse($data);
     }
 
-    public function update(UpdateOrderRequest $request,$id)
+    public function update(UpdateProductRequest $request,$id)
     {
         $validatedData = $request->validated();
         $data = $this->service->update($id,$validatedData);

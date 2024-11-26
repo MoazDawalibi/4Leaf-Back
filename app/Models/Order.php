@@ -9,8 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends BaseModel
 {
     use HasFactory;
-    public function orders()
+    public function shipments()
     {
-        return $this->belongsTo(Shipment::class);
+        return $this->belongsTo(Shipment::class,'shipment_id');
+    }
+    public function customers()
+    {
+        return $this->belongsTo(Customer::class,'customer_id');
+    }
+    public function product(){
+        return $this->belongsToMany(Product::class,'order_products' );
     }
 }
