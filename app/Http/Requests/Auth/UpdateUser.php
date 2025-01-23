@@ -11,9 +11,9 @@ class UpdateUser extends BaseFormRequest
     public function rules()
     {
         return [
-            'role_type' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
+            'role_type' => 'sometimes|string|max:255',
+            // 'email' => 'sometimes|string|email|max:255|unique:users',
+            'password' => 'sometimes',
         ];
     }
   

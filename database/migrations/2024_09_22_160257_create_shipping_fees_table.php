@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',100);
             $table->float('price');
-            $table->boolean('is_disabled');
+            $table->boolean('is_disabled')->default(0);
             $table->string('image');
             $table->timestamps();
         });

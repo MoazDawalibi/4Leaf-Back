@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class ShippingFee extends BaseModel
 {
     use HasFactory;
+
+    protected $casts = [
+        'is_disabled' => 'boolean',
+    ];
 }

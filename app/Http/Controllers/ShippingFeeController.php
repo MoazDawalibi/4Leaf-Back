@@ -28,7 +28,6 @@ class ShippingFeeController extends Controller
     }
     public function store(StoreShippingFeeRequest $request){
         $validatedData = $request->validated();
-
         $data = $this->service->storeShippingFee($validatedData);
         return $this->sendResponse($data);
     }

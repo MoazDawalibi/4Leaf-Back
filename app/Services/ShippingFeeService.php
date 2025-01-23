@@ -15,11 +15,11 @@ class ShippingFeeService extends BaseService
     {
    
         $image = ImageService::upload_image($data['image'], 'shipping_fee');
-      
         $data = ShippingFee::create([
             'image' => $image,
             'name' => $data['name'],
             'price'=> $data['price'],
+            'is_disabled' => $data['is_disabled']
         ]);
         $data->save();
 

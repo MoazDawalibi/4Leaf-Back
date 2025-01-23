@@ -16,8 +16,9 @@ class StoreProductRequest extends BaseFormRequest
             "discount"=> "nullable|numeric",
             "product_quantity"=> "required|numeric",
             "price"=> "required|numeric",
-            // "price_with_currency" => "required|numeric", 
-            // "price_with_quantity" =>"required|numeric",
+            "shipping_fee_id" => "nullable|numeric",
+            "image"=> "required|image",
+            "is_ordered"=> "nullable|boolean",
             "product_options"=> "nullable",
 
         ];

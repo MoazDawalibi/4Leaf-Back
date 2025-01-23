@@ -15,8 +15,8 @@ class UpdateProductRequest extends BaseFormRequest
             "shipping_fees"=> "nullable|numeric",
             "discount"=> "nullable|numeric",
             "product_quantity"=> "nullable|numeric",
-            // "price_with_currency" => "nullable|numeric", 
-            // "price_with_quantity" =>"nullable|numeric",
+            "image"=> "nullable|image",
+            "is_ordered"=> "nullable|boolean",
             "price"=> "nullable|numeric",
             "product_options"=> "nullable",
         ];

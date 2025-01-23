@@ -13,6 +13,7 @@ class StoreShippingFeeRequest extends BaseFormRequest
             "name"=> "required|string",
             "image"=> "required|image",
             "price"=> "required|string",
+            "is_disabled"=> "required|boolean",
         ];
     }
 }

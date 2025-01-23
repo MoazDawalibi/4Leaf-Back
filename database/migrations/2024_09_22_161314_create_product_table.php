@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId( 'order_id')->constrained('orders')->onDelete('cascade');
+            $table->foreignId( 'shipping_fee_id')->constrained('shipping_fees')->onDelete('cascade');
             $table->string('name',100);
             $table->float('shipping_fees');
             $table->float('discount'); // discount on shipping fees
@@ -22,6 +23,8 @@ return new class extends Migration
             $table->float('price_with_currency')->nullable();
             $table->float('price_with_quantity')->nullable();
             $table->longText('product_options')->nullable();
+            $table->string('image');
+            $table->boolean('is_ordered')->default(1);
             $table->timestamps();
         });
     }

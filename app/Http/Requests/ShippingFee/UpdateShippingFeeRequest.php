@@ -13,6 +13,7 @@ class UpdateShippingFeeRequest extends BaseFormRequest
             "name"=> "nullable|string",
             "image"=> "nullable|image",
             "price"=> "nullable|numeric",
+            "is_disabled"=> "required|boolean",
         ];
     }
 }

@@ -45,12 +45,12 @@ class AuthService extends BaseService
         }
 
         // Update email if provided and ensure it is unique
-        if (isset($data['email'])) {
-            if (User::where('email', $data['email'])->where('id', '!=', $userId)->exists()) {
-                return ['error' => 'Email is already used'];
-            }
-            $user->email = $data['email'];
-        }
+        // if (isset($data['email'])) {
+        //     if (User::where('email', $data['email'])->where('id', '!=', $userId)->exists()) {
+        //         return ['error' => 'Email is already used'];
+        //     }
+        //     $user->email = $data['email'];
+        // }
 
         // Update password if provided
         if (isset($data['password'])) {
